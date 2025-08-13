@@ -1,0 +1,74 @@
+<div class="container-fluid p-3">
+
+    <div class="row">
+        <div class="col-md-9">
+            <div class="row mb-4">
+                <div class="col-md-3" *ngFor="let card of cards">
+                    <mat-card class="text-center p-2">
+                        {{ card.title }}<br />
+                        <strong>{{ card.value }}</strong>
+                    </mat-card>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <mat-card>
+                                <ag-charts-angular [options]="semiDonut1ChartOptions"></ag-charts-angular>
+                            </mat-card>
+                        </div>
+                        <div class="col-md-6">
+                            <mat-card>
+                                <ag-charts-angular [options]="semiDonut2ChartOptions"></ag-charts-angular>
+                            </mat-card>
+                        </div>
+                    </div><br>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <mat-card>
+                                <ag-charts-angular [options]="pieChartOptions"></ag-charts-angular>
+                            </mat-card>
+                        </div>
+                        <div class="col-md-9">
+                            <mat-card>
+                                <h5>Bar Chart Monthly</h5>
+                                <ag-charts-angular [options]="barChartMonthlyOptions"></ag-charts-angular>
+                            </mat-card>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <mat-card style="height: fit-content;">
+                        <h5>Dummy Heading for Barchart</h5>
+                        <ag-charts-angular [options]="barChartOptions"></ag-charts-angular>
+                    </mat-card>
+                    <mat-card style="height: fit-content;">
+                        <h5>Dummy Heading for Barchart</h5>
+                        <ag-charts-angular [options]="barChartOptions"></ag-charts-angular>
+                    </mat-card>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <mat-card class="p-3 h-100">
+                <h4>My Task List</h4>
+                <mat-select placeholder="Sort by" class="mb-2">
+                    <mat-option value="due">Value 1</mat-option>
+                    <mat-option value="due">Value 1</mat-option>
+                    <mat-option value="due">Value 1</mat-option>
+                    <mat-option value="due">Value 1</mat-option>
+                    <mat-option value="due">Value 1</mat-option>
+                </mat-select>
+                <mat-list>
+                    <mat-list-item *ngFor="let task of tasks">{{ task }}</mat-list-item>
+                </mat-list>
+            </mat-card>
+        </div>
+    </div>
+
+
+
+
+</div>

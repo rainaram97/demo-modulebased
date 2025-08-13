@@ -1,0 +1,130 @@
+<div class="container-fluid p-3">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="search-box">
+                <span class="search-icon">
+                    <mat-icon>search</mat-icon>
+                </span>
+                <input type="text" class="form-control search-input" placeholder="Search by Name or ID">
+            </div>
+
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="row mb-4">
+                        <div class="col-md-3 equal-height" *ngFor="let card of stats">
+                            <mat-card class="text-center p-2 stat-card">
+                                {{ card.title }}<br />
+                                <h5><strong>{{ card.displayValue }}</strong></h5>
+                            </mat-card>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 equal-height">
+                            <mat-card class="semi-chart-card">
+                                <h6>Dummy Heading for Semi Donut</h6>
+                                <div class="gauge-area">
+                                    <canvas baseChart [data]="gauge1" [type]="'doughnut'" [options]="gaugeOptions"></canvas>
+                                    <div class="gauge-center">
+                                        <div class="gauge-num">{{ gauge1Value }}%</div>
+                                        <div class="gauge-sub">Compliance Stats</div>
+                                    </div>
+                                </div>
+                            </mat-card>
+                        </div>
+                        <div class="col-md-6 equal-height">
+                            <mat-card class="semi-chart-card">
+                                <h6>Dummy Heading for Semi Donut</h6>
+                                <div class="gauge-area">
+                                    <canvas baseChart [data]="gauge2" [type]="'doughnut'" [options]="gaugeOptions"></canvas>
+                                    <div class="gauge-center">
+                                        <div class="gauge-num">{{ gauge2Value }}%</div>
+                                        <div class="gauge-sub">Compliance Stats</div>
+                                    </div>
+                                </div>
+                            </mat-card>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 equal-height">
+                            <mat-card class="chart-card">
+                                <h6>Dummy Heading for Donut</h6>
+                                <div class="small-donut-area">
+                                    <canvas baseChart [data]="smallDonut" [type]="'doughnut'" [options]="smallDonutOptions"></canvas>
+                                    <div class="donut-center">Total<br><strong>{{ totalSmallDonut }}</strong></div>
+                                </div>
+                            </mat-card>
+                        </div>
+                        <div class="col-md-9 equal-height">
+                            <mat-card class="chart-card">
+                                <div class="chart-header d-flex justify-content-between align-items-center mb-2">
+                                    <h6>Dummy Heading for Barchart</h6>
+
+                                    <div>
+                                        <button mat-raised-button class="chart-button" [class.active]="activeButton === 'monthly'" (click)="setActive('monthly')">
+                                            Monthly
+                                        </button>
+                                        <button mat-raised-button class="chart-button" [class.active]="activeButton === 'yearly'" (click)="setActive('yearly')">
+                                            Yearly
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="chart-area">
+                                    <canvas #chart baseChart [data]="monthlyBar" [type]="'bar'" [options]="monthlyOptions">
+                                    </canvas>
+                                </div>
+                            </mat-card>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-3">
+                    <div class="row">
+                        <div class="col-md-12 equal-height">
+                            <mat-card class="bar-chart-card">
+                                <h6>Dummy Heading for Barchart</h6>
+                                <strong>125</strong>
+                                <div class="chart-area">
+                                    <canvas baseChart [data]="categoryBar" [type]="'bar'" [options]="categoryOptions"></canvas>
+                                </div>
+                            </mat-card>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12 equal-height">
+                            <mat-card class="bar-chart-card">
+                                <h6>Dummy Heading for Barchart</h6>
+                                <strong>125</strong>
+                                <div class="chart-area">
+                                    <canvas baseChart [data]="categoryBar" [type]="'bar'" [options]="categoryOptions"></canvas>
+                                </div>
+                            </mat-card>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 equal-height">
+            <mat-card class="p-3 h-100">
+                <mat-card class="task-card">
+                    <h6>My Task List</h6>
+                </mat-card>
+                <!-- <mat-form-field class="mb-2 w-100">
+                    <mat-label>Sort by</mat-label>
+                    <mat-select panelClass="sort-panel">
+                        <mat-option *ngFor="let option of filteredSortOptions" [value]="option.value">
+                            {{ option.label }}
+                        </mat-option>
+                    </mat-select>
+
+                    <mat-icon matSuffix>filter_alt</mat-icon>
+                </mat-form-field> -->
+                <mat-list>
+                    <mat-list-item *ngFor="let task of tasks">{{ task }}</mat-list-item>
+                </mat-list>
+            </mat-card>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,36 @@
+<div>
+
+    <div>
+        <p>Chile Navigations</p>
+        <ul>
+            <li>
+                <a routerLink="/demo/demo1">Go to Demo1 </a>
+            </li>
+            <li>
+                <a routerLink="/demo/demo2">Go to Demo2 </a>
+            </li>
+            <li>
+                <a routerLink="/demo/demo3">Go to Demo3 </a>
+            </li>
+        </ul>
+    </div>
+    <h2>Ag-Grid Table</h2>
+    <!-- <ag-grid-angular class="ag-theme-alpine grid" [rowData]="pivotedData" [columnDefs]="columnDefs" [gridOptions]="gridOptions" [groupDisplayType]="'multipleColumns'" [rowGroupPanelShow]="'always'" [animateRows]="true" (gridReady)="onGridReady($event)">
+    </ag-grid-angular> -->
+
+    <!-- Pivot 1 -->
+    <!-- <ag-grid-angular #agGrid class="ag-theme-alpine" style="width: 100%; height: 500px;" [rowData]="pivotedData" [columnDefs]="columnDefs" [defaultColDef]="{ sortable: true, resizable: true, filter: true }" [gridOptions]="gridOptions" (gridReady)="onGridReady($event)">
+    </ag-grid-angular>
+
+    <button (click)="onPivotMode()">On Pivot Mode by Fuel Type</button> -->
+
+    <div style="margin-bottom: 1rem;">
+        <label>Pivot By: </label>
+        <select [(ngModel)]="selectedPivot" (change)="onPivotChange()">
+    <option *ngFor="let opt of pivotOptions" [value]="opt.value">{{ opt.label }}</option>
+  </select>
+    </div>
+
+    <ag-grid-angular #agGrid style="width: 100%; height: 500px;" class="ag-theme-alpine" [rowData]="pivotedData" [columnDefs]="columnDefs" [defaultColDef]="{ resizable: true, sortable: true, filter: true }"></ag-grid-angular>
+
+</div>
