@@ -1,6 +1,66 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+// ✅ 1️⃣ Add tooltip div (before creating nodes)
+  const tooltip = d3.select('body')
+    .append('div')
+    .style('position', 'absolute')
+    .style('background', '#fff')
+    .style('border', '1px solid #ccc')
+    .style('padding', '6px 10px')
+    .style('border-radius', '4px')
+    .style('box-shadow', '0 2px 6px rgba(0,0,0,0.15)')
+    .style('pointer-events', 'none')
+    .style('opacity', 0);
 
+  // ✅ 2️⃣ Draw links
+  svg.selectAll('path.link')
+    .data(root.links())
+    .enter()
+    .append('path')
+    .attr('class', 'link')
+    .attr('fill', 'none')
+    .attr('stroke', '#ccc')
+    .attr('d', d3.linkHorizontal()
+      .x(d => d.y)
+      .y(d => d.x)
+    );
+
+  // ✅ 3️⃣ Draw nodes
+  const nodes = svg.selectAll('g.node')
+    .data(root.descendants())
+    .enter()
+    .append('g')
+    .attr('class', 'node')
+    .attr('transform', d => `translate(${d.y},${d.x})`);
+
+  nodes.append('circle')
+    .attr('r', 6)
+    .style('fill', '#69b3a2')
+    // ✅ 4️⃣ Tooltip events
+    .on('mouseover', (event, d) => {
+      tooltip.transition().duration(200).style('opacity', 1);
+      tooltip.html(`
+        <strong>${d.data.name}</strong><br/>
+        Type: ${d.data.type || 'N/A'}<br/>
+        Value: ${d.data.value || '-'}
+      `)
+        .style('left', (event.pageX + 10) + 'px')
+        .style('top', (event.pageY - 20) + 'px');
+    })
+    .on('mousemove', (event) => {
+      tooltip
+        .style('left', (event.pageX + 10) + 'px')
+        .style('top', (event.pageY - 20) + 'px');
+    })
+    .on('mouseout', () => {
+      tooltip.transition().duration(300).style('opacity', 0);
+    });
+
+  // ✅ 5️⃣ Optional node labels
+  nodes.append('text')
+    .attr('dx', 10)
+    .attr('dy', 3)
+    .text(d => d.data.name)
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
